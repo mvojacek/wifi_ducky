@@ -1,0 +1,3 @@
+[submodule "arduino_wifi_duck/lib/FingerprintUSBHost"]
+	path = arduino_wifi_duck/lib/FingerprintUSBHost
+	url = git@github.com:keyboardio/FingerprintUSBHost.git

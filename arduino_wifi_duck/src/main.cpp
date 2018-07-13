@@ -1,6 +1,7 @@
 #include <Mouse.h>
 #include <Keyboard.h>
-#include "FingerprintUSBHost.h"
+#include <FingerprintUSBHost.h>
+
 #define BAUD_RATE 57200
 
 #define ExternSerial Serial1
