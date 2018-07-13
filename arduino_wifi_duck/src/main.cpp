@@ -6,6 +6,8 @@
 
 #define ExternSerial Serial1
 
+void Press(String b);
+
 // OS detection, mouse, ascii, and additional keys by Gloglas
 
 String bufferStr = "";
@@ -20,6 +22,7 @@ int dontwrite = 0;
 int winOS = 0;
 int macOS = 0;
 int linOS = 0;
+
 void Line(String _line)
 {
   int firstSpace = _line.indexOf(" ");
@@ -38,7 +41,7 @@ void Line(String _line)
 if(dontwrite == 0){
   if(firstSpace == -1) Press(_line);
   else if(_line.substring(0,firstSpace) == "STRING"){
-    for(int i=firstSpace+1;i<_line.length();i++) Keyboard.write(_line[i]);
+    for(unsigned int i=firstSpace+1;i<_line.length();i++) Keyboard.write(_line[i]);
   }
   else if(_line.substring(0,firstSpace) == "DELAY"){
     int delaytime = _line.substring(firstSpace + 1).toInt();
@@ -183,7 +186,7 @@ void setup() {
 
 void loop() {
   if(ExternSerial.available()) {
-    bufferStr = ExternSerial.readStringUntil("END");
+    bufferStr = ExternSerial.readStringUntil(0x04); //EOF
     Serial.println(bufferStr);
   }
 
